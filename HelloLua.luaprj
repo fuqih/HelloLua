@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Project Name="HelloLua.luaprj" Cmd="E:\cocos2dxProject\HelloLua\simulator\win32\HelloLua.exe" Arg="" Dir="E:\cocos2dxProject\HelloLua" Toggle="false" >
+    <Filter RelativePath=".\src" Toggle="false" >
+        <LuaFile RelativePath=".\main.lua" />
+        <Filter RelativePath=".\cocos" Toggle="true" >
+            <LuaFile RelativePath=".\init.lua" />
+            <Filter RelativePath=".\3d" Toggle="true" >
+                <LuaFile RelativePath=".\3dConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\cocos2d" Toggle="true" >
+                <LuaFile RelativePath=".\bitExtend.lua" />
+                <LuaFile RelativePath=".\Cocos2d.lua" />
+                <LuaFile RelativePath=".\Cocos2dConstants.lua" />
+                <LuaFile RelativePath=".\deprecated.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocos2dClass.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocos2dEnum.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocos2dFunc.lua" />
+                <LuaFile RelativePath=".\DeprecatedOpenglEnum.lua" />
+                <LuaFile RelativePath=".\DrawPrimitives.lua" />
+                <LuaFile RelativePath=".\functions.lua" />
+                <LuaFile RelativePath=".\json.lua" />
+                <LuaFile RelativePath=".\luaj.lua" />
+                <LuaFile RelativePath=".\luaoc.lua" />
+                <LuaFile RelativePath=".\Opengl.lua" />
+                <LuaFile RelativePath=".\OpenglConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\cocosbuilder" Toggle="true" >
+                <LuaFile RelativePath=".\CCBReaderLoad.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocosBuilderClass.lua" />
+            </Filter>
+            <Filter RelativePath=".\cocosdenshion" Toggle="true" >
+                <LuaFile RelativePath=".\AudioEngine.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocosDenshionClass.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocosDenshionFunc.lua" />
+            </Filter>
+            <Filter RelativePath=".\cocostudio" Toggle="true" >
+                <LuaFile RelativePath=".\CocoStudio.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocoStudioClass.lua" />
+                <LuaFile RelativePath=".\DeprecatedCocoStudioFunc.lua" />
+                <LuaFile RelativePath=".\StudioConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\controller" Toggle="true" >
+                <LuaFile RelativePath=".\ControllerConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\extension" Toggle="true" >
+                <LuaFile RelativePath=".\DeprecatedExtensionClass.lua" />
+                <LuaFile RelativePath=".\DeprecatedExtensionEnum.lua" />
+                <LuaFile RelativePath=".\DeprecatedExtensionFunc.lua" />
+                <LuaFile RelativePath=".\ExtensionConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\framework" Toggle="true" >
+                <LuaFile RelativePath=".\audio.lua" />
+                <LuaFile RelativePath=".\device.lua" />
+                <LuaFile RelativePath=".\display.lua" />
+                <LuaFile RelativePath=".\init.lua" />
+                <LuaFile RelativePath=".\package_support.lua" />
+                <LuaFile RelativePath=".\transition.lua" />
+                <Filter RelativePath=".\components" Toggle="true" >
+                    <LuaFile RelativePath=".\event.lua" />
+                </Filter>
+                <Filter RelativePath=".\extends" Toggle="true" >
+                    <LuaFile RelativePath=".\LayerEx.lua" />
+                    <LuaFile RelativePath=".\MenuEx.lua" />
+                    <LuaFile RelativePath=".\NodeEx.lua" />
+                    <LuaFile RelativePath=".\SpriteEx.lua" />
+                    <LuaFile RelativePath=".\UICheckBox.lua" />
+                    <LuaFile RelativePath=".\UIEditBox.lua" />
+                    <LuaFile RelativePath=".\UIListView.lua" />
+                    <LuaFile RelativePath=".\UIPageView.lua" />
+                    <LuaFile RelativePath=".\UIScrollView.lua" />
+                    <LuaFile RelativePath=".\UISlider.lua" />
+                    <LuaFile RelativePath=".\UITextField.lua" />
+                    <LuaFile RelativePath=".\UIWidget.lua" />
+                </Filter>
+            </Filter>
+            <Filter RelativePath=".\network" Toggle="true" >
+                <LuaFile RelativePath=".\DeprecatedNetworkClass.lua" />
+                <LuaFile RelativePath=".\DeprecatedNetworkEnum.lua" />
+                <LuaFile RelativePath=".\DeprecatedNetworkFunc.lua" />
+                <LuaFile RelativePath=".\NetworkConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\physics3d" Toggle="true" >
+                <LuaFile RelativePath=".\physics3d-constants.lua" />
+            </Filter>
+            <Filter RelativePath=".\spine" Toggle="true" >
+                <LuaFile RelativePath=".\SpineConstants.lua" />
+            </Filter>
+            <Filter RelativePath=".\ui" Toggle="true" >
+                <LuaFile RelativePath=".\DeprecatedUIEnum.lua" />
+                <LuaFile RelativePath=".\DeprecatedUIFunc.lua" />
+                <LuaFile RelativePath=".\experimentalUIConstants.lua" />
+                <LuaFile RelativePath=".\GuiConstants.lua" />
+            </Filter>
+        </Filter>
+        <LuaFile RelativePath=".\GameScene.lua" />
+        <LuaFile RelativePath=".\SceneTemplate.lua" />
+        <LuaFile RelativePath=".\GameScene2.lua" />
+    </Filter>
+</Project>
