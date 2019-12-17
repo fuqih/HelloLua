@@ -1,10 +1,10 @@
 local size = cc.Director:getInstance():getWinSize()
 
 local GameScene = class("GameScene",function()
-	return cc.Scene:create()--²Â²âÓ¦¸ÃÊÇ¼Ì³ĞÁËSceneÀà
+	return cc.Scene:create()--çŒœæµ‹åº”è¯¥æ˜¯ç»§æ‰¿äº†Sceneç±»
 end)
 function GameScene:create()
-	--@²»ÖªµÀÕâ¸öÊÇÊ²Ã´
+	--@ä¸çŸ¥é“è¿™ä¸ªæ˜¯ä»€ä¹ˆ
 	local scene = GameScene.new()
 	scene:addChild(scene:createLayer())
 	return scene
@@ -25,9 +25,9 @@ function GameScene:createLayer()
     sprite:setPosition(cc.p(size.width/2, size.height/2))
     layer:addChild(sprite)
 	local function onMyTouchBegan(touch,event)
-		local target = event:getCurrentTarget()--targetÊÇÊÂ¼şÔ´
+		local target = event:getCurrentTarget()--targetæ˜¯äº‹ä»¶æº
 		
-		local UIposition=touch:getLocationInView()--ÕâÀï²ÉÓÃµÄÊÇUI×ø±ê£¬¼´´Ó×óÉÏÎªÔ­µã£¬ÓÒÎªxÎªÕı£¬ÏÂÎªyÎªÕı
+		local UIposition=touch:getLocationInView()--è¿™é‡Œé‡‡ç”¨çš„æ˜¯UIåæ ‡ï¼Œå³ä»å·¦ä¸Šä¸ºåŸç‚¹ï¼Œå³ä¸ºxä¸ºæ­£ï¼Œä¸‹ä¸ºyä¸ºæ­£
 		cclog("touchInView_x:"..UIposition.x)
 		cclog("touchInView_Y:"..UIposition.y)
 		if target==sprite then
@@ -65,7 +65,7 @@ function GameScene:createLayer()
 		cclog(touch:getLocation().y)
 	end
 	--[[
-		Ã÷Ã÷ÊÂ¼şÖ»·ÅÔÚÕâ¸öÍ¼Æ¬ÉÏ£¬µ«ÊÇÎªÊ²Ã´µã»÷ÆäËûÇøÓòÒ²»á´¥·¢ÊÂ¼ş£¿£¿£¿
+		æ˜æ˜äº‹ä»¶åªæ”¾åœ¨è¿™ä¸ªå›¾ç‰‡ä¸Šï¼Œä½†æ˜¯ä¸ºä»€ä¹ˆç‚¹å‡»å…¶ä»–åŒºåŸŸä¹Ÿä¼šè§¦å‘äº‹ä»¶ï¼Ÿï¼Ÿï¼Ÿ
 	--]]
 	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
 	if sprite.touchListen then eventDispatcher:removeEventListener(sprite.touchListen) end
@@ -86,16 +86,16 @@ function GameScene:createLayer()
         local x,y = label:getPosition()
         label:setPosition(cc.p(x + 2, y - 2))
     end
-	--½Úµã¿ÉÒÔÔÚÃ¿Ò»Ö¡¶¯»­µ÷ÓÃÒ»¸öº¯Êı
-	--¿ªÊ¼ÓÎÏ·µ÷¶È
+	--èŠ‚ç‚¹å¯ä»¥åœ¨æ¯ä¸€å¸§åŠ¨ç”»è°ƒç”¨ä¸€ä¸ªå‡½æ•°
+	--å¼€å§‹æ¸¸æˆè°ƒåº¦
 --    layer:scheduleUpdateWithPriorityLua(update, 0)
     local function onNodeEvent(tag)
-        if tag == "exit" then--ÅĞ¶Ï´úÂëÊÇ·ñÊÇÍË³ö²ãÊÂ¼ş
-            --¿ªÊ¼ÓÎÏ·µ÷¶È
+        if tag == "exit" then--åˆ¤æ–­ä»£ç æ˜¯å¦æ˜¯é€€å‡ºå±‚äº‹ä»¶
+            --å¼€å§‹æ¸¸æˆè°ƒåº¦
             layer:unscheduleUpdate()
         end
     end
-    layer:registerScriptHandler(onNodeEvent)--×¢²á²ãÊÂ¼ş¼àÌıÆ÷
+    layer:registerScriptHandler(onNodeEvent)--æ³¨å†Œå±‚äº‹ä»¶ç›‘å¬å™¨
 	return layer
 end
 

@@ -2,30 +2,37 @@ require "cocos.init"
 
 --cclog
 --[[
-...ÊÇ¿É±ä³¤±í´ïÊ½£¬¿ÉÒÔÔÚº¯Êı¶¨Òå´¦×÷ÎªĞÎ²ÎÁĞ±í½ÓÊÕ²ÎÊı£¬
-µ±È»£¬Ç°ÃæÒ²¿ÉÒÔÓĞÈÎÒâÊıÁ¿¹Ì¶¨²ÎÊı£¬µ«ÊÇ¿É±ä³¤²ÎÊı±ØĞë·ÅÔÚºóÃæ£¬ÕâÓĞ¸öÈ±Ïİ£¬²ÎÊı°üº¬nilµÄÊ±ºòËü¾Í¿ÉÄÜ²»ÔÙÊÇ¸öÓĞĞ§µÄĞòÁĞ£¬ÔÚ´Ë¿ÉÒÔÊ¹ÓÃtable.pack¡£
-¾ßÌåÇé¿ö·­ÔÄlua³ÌĞòÉè¼ÆµÚËÄ°æ£¬p62¡£
+...æ˜¯å¯å˜é•¿è¡¨è¾¾å¼ï¼Œå¯ä»¥åœ¨å‡½æ•°å®šä¹‰å¤„ä½œä¸ºå½¢å‚åˆ—è¡¨æ¥æ”¶å‚æ•°ï¼Œ
+å½“ç„¶ï¼Œå‰é¢ä¹Ÿå¯ä»¥æœ‰ä»»æ„æ•°é‡å›ºå®šå‚æ•°ï¼Œä½†æ˜¯å¯å˜é•¿å‚æ•°å¿…é¡»æ”¾åœ¨åé¢ï¼Œè¿™æœ‰ä¸ªç¼ºé™·ï¼Œå‚æ•°åŒ…å«nilçš„æ—¶å€™å®ƒå°±å¯èƒ½ä¸å†æ˜¯ä¸ªæœ‰æ•ˆçš„åºåˆ—ï¼Œåœ¨æ­¤å¯ä»¥ä½¿ç”¨table.packã€‚
+å…·ä½“æƒ…å†µç¿»é˜…luaç¨‹åºè®¾è®¡ç¬¬å››ç‰ˆï¼Œp62ã€‚
 --]]
 cclog = function(...)
 	print(string.format(...))
 end
+---printå¸¦ç‰¹æ®Šé¢œè‰²çš„æ—¥å¿—
+function logc(...)
+	cc.CGame:setPrintColor(0x000C)
+	cclog(...)
+	cc.CGame:setPrintColor(0x000F)
+end
+
 local function main()
-	--À¬»ø»ØÊÕº¯Êı
-	collectgarbage("collect")--×öÒ»¸öÍêÕûµÄÀ¬»ø»ØÊÕÑ­»·
-	collectgarbage("setpause",100)--ÉèÖÃ¼äĞªÂÊ£¬·µ»Ø¼äĞªÂÊµÄÇ°Ò»¸öÖµ
-	collectgarbage("setstepmul",5000)--·µ»Ø²½½ø±¶ÂÊµÄÇ°Ò»¸öÖµ
+	--åƒåœ¾å›æ”¶å‡½æ•°
+	collectgarbage("collect")--åšä¸€ä¸ªå®Œæ•´çš„åƒåœ¾å›æ”¶å¾ªç¯
+	collectgarbage("setpause",100)--è®¾ç½®é—´æ­‡ç‡ï¼Œè¿”å›é—´æ­‡ç‡çš„å‰ä¸€ä¸ªå€¼
+	collectgarbage("setstepmul",5000)--è¿”å›æ­¥è¿›å€ç‡çš„å‰ä¸€ä¸ªå€¼
 	
-	--¼ÓÈëËÑË÷Â·¾¶
+	--åŠ å…¥æœç´¢è·¯å¾„
 	cc.FileUtils:getInstance():addSearchPath("src")
 	cc.FileUtils:getInstance():addSearchPath("res")
 	
 	local director = cc.Director:getInstance()
 	director:getOpenGLView():setDesignResolutionSize(1280,720,0)
 	director:setDisplayStats(true)
-	--ÉèÖÃÖ¡ÂÊ
+	--è®¾ç½®å¸§ç‡
 	director:setAnimationInterval(1.0/60)
 	
-	local scene = require("GameScene2")
+	local scene = require("GameScene3")
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
 		cc.Director:getInstance():replaceScene(gameScene)

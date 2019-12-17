@@ -1,10 +1,10 @@
 local size = cc.Director:getInstance():getWinSize()
 
 local GameScene = class("GameScene",function()
-	return cc.Scene:create()--²Â²âÓ¦¸ÃÊÇ¼Ì³ĞÁËSceneÀà
+	return cc.Scene:create()--çŒœæµ‹åº”è¯¥æ˜¯ç»§æ‰¿äº†Sceneç±»
 end)
 function GameScene:create()
-	--@²»ÖªµÀÕâ¸öÊÇÊ²Ã´
+	--@ä¸çŸ¥é“è¿™ä¸ªæ˜¯ä»€ä¹ˆ
 	local scene = GameScene.new()
 	scene:addChild(scene:createLayer())
 	return scene

@@ -49,7 +49,7 @@
                 <LuaFile RelativePath=".\DeprecatedExtensionFunc.lua" />
                 <LuaFile RelativePath=".\ExtensionConstants.lua" />
             </Filter>
-            <Filter RelativePath=".\framework" Toggle="true" >
+            <Filter RelativePath=".\framework" Toggle="false" >
                 <LuaFile RelativePath=".\audio.lua" />
                 <LuaFile RelativePath=".\device.lua" />
                 <LuaFile RelativePath=".\display.lua" />
@@ -96,5 +96,6 @@
         <LuaFile RelativePath=".\GameScene.lua" />
         <LuaFile RelativePath=".\SceneTemplate.lua" />
         <LuaFile RelativePath=".\GameScene2.lua" />
+        <LuaFile RelativePath=".\GameScene3.lua" />
     </Filter>
 </Project>
