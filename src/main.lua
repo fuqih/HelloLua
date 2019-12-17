@@ -16,6 +16,7 @@ function logc(...)
 	cc.CGame:setPrintColor(0x000F)
 end
 
+
 local function main()
 	--垃圾回收函数
 	collectgarbage("collect")--做一个完整的垃圾回收循环
