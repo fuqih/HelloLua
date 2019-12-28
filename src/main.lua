@@ -9,12 +9,12 @@ require "cocos.init"
 cclog = function(...)
 	print(string.format(...))
 end
----print带特殊颜色的日志
+--[[---print带特殊颜色的日志
 function logc(...)
 	cc.CGame:setPrintColor(0x000C)
 	cclog(...)
 	cc.CGame:setPrintColor(0x000F)
-end
+end--]]
 
 
 local function main()
@@ -28,12 +28,13 @@ local function main()
 	cc.FileUtils:getInstance():addSearchPath("res")
 	
 	local director = cc.Director:getInstance()
-	director:getOpenGLView():setDesignResolutionSize(1280,720,0)
+--	director:getOpenGLView():setDesignResolutionSize(1280,720,0)--设置设计屏幕尺寸
+--	cc.Director:getInstance():getOpenGLView():setFrameZoomFactor(0.7)--设置缩放
 	director:setDisplayStats(true)
 	--设置帧率
 	director:setAnimationInterval(1.0/60)
 	
-	local scene = require("GameScene3")
+	local scene = require("GameScene6")
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
 		cc.Director:getInstance():replaceScene(gameScene)
