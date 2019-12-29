@@ -72,9 +72,9 @@ function GameScene:createLayer()
 	
 	--突然想知道layer的大小,生成的1280宽，0高是怎么回事
 	local layerSize=layer:getContentSize()
---	local layerScale=layer:getScale()
+	local layerScale=layer:getScale()
 	local layerAnchor=layer:getAnchorPoint()
-	cclog(layerSize.width,layerSize.height)
+--	cclog(layerSize.width,layerSize.height)
 --	cclog(layerScale)
 --	cclog(layerAnchor.x,layerAnchor.y)
 	

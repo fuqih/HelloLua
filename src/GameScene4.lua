@@ -77,7 +77,7 @@ function GameScene:createLayer()
     end
     settingMenuItem:registerScriptTapHandler(menuItemSettingCallback)
 	
-	   -- °ïÖúÍ¼Æ¬²Ëµ¥
+	-- °ïÖúÍ¼Æ¬²Ëµ¥
     local helpMenuItem = cc.MenuItemImage:create(
         "menu/sprite/help-up.png",
         "menu/sprite/help-down.png")
