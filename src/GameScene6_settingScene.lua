@@ -14,6 +14,8 @@ local size = cc.Director:getInstance():getWinSize()
 	5.cleanup。场景对象被清除时触发。
 	--使用方法为，在ctor里构建处理函数，并设置回调函数
 	--多场景下切换，场景的生命周期更复杂，两种场景先后逐步处于各种情况
+	详情可以看p104页
+	一般来说利用在生命周期这些时间做一些资源的创建和销毁事情
 --]]
 local GameScene = class("GameScene",function()
 	return cc.Scene:create()--猜测应该是继承了Scene类
