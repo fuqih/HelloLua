@@ -35,7 +35,7 @@ local function main()
 	--设置帧率
 	director:setAnimationInterval(1.0/60)
 	
-	local scene = require("GameScene7")
+	local scene = require("GameScene8_actions")
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
 		cc.Director:getInstance():replaceScene(gameScene)
