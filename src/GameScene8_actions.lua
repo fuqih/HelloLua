@@ -77,9 +77,7 @@ function GameScene:createLayer()
 		table.insert(menuItems,menuItem)
 	end
 	--有点操淡，不知道为什么table的pack,unpack不能用了
-	local mn = cc.Menu:create(	menuItems[1],menuItems[2],menuItems[3],menuItems[4],menuItems[5],
-									menuItems[6],menuItems[7],menuItems[8],menuItems[9],menuItems[10],
-									menuItems[11],menuItems[12],menuItems[13],menuItems[14],menuItems[15])
+	local mn = cc.Menu:create(unpack(menuItems))
 	mn:alignItemsInColumns(3,3,3,3,3)
 	layer:addChild(mn)
 	
