@@ -1,5 +1,5 @@
 require "cocos.init"
-
+require "BaseFunctionLib"
 
 --cclog
 --[[

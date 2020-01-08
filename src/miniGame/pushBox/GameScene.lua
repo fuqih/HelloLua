@@ -1,4 +1,6 @@
 local size = cc.Director:getInstance():getWinSize()
+--关卡数据信息
+local m_levelData=nil
 
 local GameScene = class("GameScene",function()
 	return cc.Scene:create()--猜测应该是继承了Scene类
@@ -22,17 +24,24 @@ function GameScene:createLayer()
     bg:setPosition(cc.p(size.width/2, size.height/2))
 	bg:setContentSize(size.width,size.height)
     layer:addChild(bg)
-	
-	local levelDate=self:initLevelDate()
+	--获得关卡数据
+	local levelData=self:initLevelDate()
+	--根据关卡数据初始化游戏界面
+	self:initMap(levelData)
 	
 	return layer
 end
 
---获得关卡数据
+--获得关卡数据(深复制一份)
 function GameScene:initLevelDate()
 	local level=requirePushBox("Level")
-	local levelDate=level:getLevelDate()
-	return levelDate
+	local levelData=level:getLevelDate()
+	m_levelData=DeepCopy(levelData)
+	return m_levelData
+end
+--渲染关卡地图
+function GameScene:initMap(Data)
+	local 
 end
 
 return GameScene

@@ -16,7 +16,8 @@ function menuScene:create()
 	--@不知道这个是什么
 	local scene = menuScene.new()
 	scene:addChild(scene:createLayer())
-	return scene
+	local ts=cc.TransitionFade:create(1,scene,cc.c3b(0xcc,0xcc,0xcc))
+	return ts
 end
 function menuScene:ctor()
 
