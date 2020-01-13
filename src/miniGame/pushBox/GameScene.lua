@@ -18,7 +18,17 @@ function GameScene:create()
 	return ts
 end
 function GameScene:ctor()
-	
+    --场景生命周期事件处理
+    local function onNodeEvent(event)
+        if event == "exitTransitionStart" then
+            self:onExitTransitionStart()
+        end
+    end
+    self:registerScriptHandler(onNodeEvent)
+end
+
+function GameScene:onExitTransitionStart()
+	m_mapSpr={}
 end
 
 function GameScene:createLayer()
@@ -176,6 +186,29 @@ function GameScene:initFloor(floorData)
 		end
 	end
 end
+function GameScene:refreshFloor(floorData)
+	for k,v in ipairs(m_mapData) do
+		for kk,vv in ipairs(v) do
+			if m_mapData[k][kk]~=floorData[k][kk] then
+				local strPath=""
+				if vv==4 then
+					strPath="miniGame/pushBox/player/Character4.png"
+				elseif vv==3 then
+					strPath="miniGame/pushBox/box/CrateDark_Beige.png"
+				elseif vv==2 then
+					strPath="miniGame/pushBox/target/EndPoint_Gray.png"
+				elseif vv==1 then
+					strPath="miniGame/pushBox/wall/WallRound_Gray.png"
+				else
+					strPath="miniGame/pushBox/floor/GroundGravel_Sand.png"
+				end
+				m_mapSpr[k][kk]:setTexture(strPath)
+				m_mapSpr[k][kk]:setContentSize(60,60)
+			end
+		end
+	end
+	m_mapData=floorData
+end
 
 local opCode={up="up",down="down",left="left",right="right"}
 function GameScene:moveOperate(key)
@@ -183,55 +216,194 @@ function GameScene:moveOperate(key)
 		if self:operateUp() then
 			--转化成一张二维表
 			local data2D=self:construct2DimensionData(m_levelData)
-			m_mapData=data2D
-			--根据关卡数据初始化游戏界面
-			self:initMap(data2D)
+			self:refreshFloor(data2D)
 		end
 	elseif key==opCode.down then
+		if self:operateDown() then
+			--转化成一张二维表
+			local data2D=self:construct2DimensionData(m_levelData)
+			self:refreshFloor(data2D)
+		end
 	elseif key==opCode.left then
+		if self:operateLeft() then
+			--转化成一张二维表
+			local data2D=self:construct2DimensionData(m_levelData)
+			self:refreshFloor(data2D)
+		end
 	elseif key==opCode.right then
+		if self:operateRight() then
+			--转化成一张二维表
+			local data2D=self:construct2DimensionData(m_levelData)
+			self:refreshFloor(data2D)
+		end
 	end
 end
 function GameScene:operateUp()
 	local nowPos={x=m_levelData.mapPlayerLocation[1],y=m_levelData.mapPlayerLocation[2]}
 	local newPos={x=nowPos.x,y=nowPos.y+1}
 	--如果越界，返回false
-	if not m_mapData[newPos.x][newPos.y] then
+	if not m_mapData[newPos.y][newPos.x] then
 		return false
 	end
 	--如果是墙，返回false
-	if m_mapData[newPos.x][newPos.y]==1 then
+	if m_mapData[newPos.y][newPos.x]==1 then
 		return false
 	end
 	--如果是箱子
-	if m_mapData[newPos.x][newPos.y]==3 then
+	if m_mapData[newPos.y][newPos.x]==3 then
 		--则箱子之上一格
 		local newPos2={x=newPos.x,y=newPos.y+1}
 		--如果越界，返回false
-		if not m_mapData[newPos2.x][newPos2.y] then
+		if not m_mapData[newPos2.y][newPos2.x] then
 			return false
 		end
 		--如果是墙，返回false
-		if m_mapData[newPos2.x][newPos2.y]==1 then
+		if m_mapData[newPos2.y][newPos2.x]==1 then
 			return false
 		end
 		--如果是箱子，返回false
-		if m_mapData[newPos2.x][newPos2.y]==3 then
+		if m_mapData[newPos2.y][newPos2.x]==3 then
 			return false
 		end
 		--则玩家可以向上移动，箱子可以向上移动，在此更新关卡地图数据,刷新界面不在此处
-		m_levelData.mapPlayerLocation={newPos.y,newPos.x}
+		m_levelData.mapPlayerLocation={newPos.x,newPos.y}
 		local boxPosList=m_levelData.mapBox
 		for k,v in ipairs(boxPosList) do
 			if v[1]==newPos.x and v[2]==newPos.y then
-				v={newPos2.x,newPos2.y}
+				boxPosList[k]={newPos2.x,newPos2.y}
 				break
 			end
 		end
 		return true
 	end
 	--上面可以移动
-	m_levelData.mapPlayerLocation={newPos.y,newPos.x}
+	m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+	return true
+end
+function GameScene:operateDown()
+	local nowPos={x=m_levelData.mapPlayerLocation[1],y=m_levelData.mapPlayerLocation[2]}
+	local newPos={x=nowPos.x,y=nowPos.y-1}
+	--如果越界，返回false
+	if not m_mapData[newPos.y][newPos.x] then
+		return false
+	end
+	--如果是墙，返回false
+	if m_mapData[newPos.y][newPos.x]==1 then
+		return false
+	end
+	--如果是箱子
+	if m_mapData[newPos.y][newPos.x]==3 then
+		--则箱子之下一格
+		local newPos2={x=newPos.x,y=newPos.y-1}
+		--如果越界，返回false
+		if not m_mapData[newPos2.y][newPos2.x] then
+			return false
+		end
+		--如果是墙，返回false
+		if m_mapData[newPos2.y][newPos2.x]==1 then
+			return false
+		end
+		--如果是箱子，返回false
+		if m_mapData[newPos2.y][newPos2.x]==3 then
+			return false
+		end
+		--则玩家可以向下移动，箱子可以向下移动，在此更新关卡地图数据,刷新界面不在此处
+		m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+		local boxPosList=m_levelData.mapBox
+		for k,v in ipairs(boxPosList) do
+			if v[1]==newPos.x and v[2]==newPos.y then
+				boxPosList[k]={newPos2.x,newPos2.y}
+				break
+			end
+		end
+		return true
+	end
+	--下面可以移动
+	m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+	return true
+end
+function GameScene:operateLeft()
+	local nowPos={x=m_levelData.mapPlayerLocation[1],y=m_levelData.mapPlayerLocation[2]}
+	local newPos={x=nowPos.x-1,y=nowPos.y}
+	--如果越界，返回false
+	if not m_mapData[newPos.y][newPos.x] then
+		return false
+	end
+	--如果是墙，返回false
+	if m_mapData[newPos.y][newPos.x]==1 then
+		return false
+	end
+	--如果是箱子
+	if m_mapData[newPos.y][newPos.x]==3 then
+		--则箱子之左一格
+		local newPos2={x=newPos.x-1,y=newPos.y}
+		--如果越界，返回false
+		if not m_mapData[newPos2.y][newPos2.x] then
+			return false
+		end
+		--如果是墙，返回false
+		if m_mapData[newPos2.y][newPos2.x]==1 then
+			return false
+		end
+		--如果是箱子，返回false
+		if m_mapData[newPos2.y][newPos2.x]==3 then
+			return false
+		end
+		--则玩家可以向左移动，箱子可以向左移动，在此更新关卡地图数据,刷新界面不在此处
+		m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+		local boxPosList=m_levelData.mapBox
+		for k,v in ipairs(boxPosList) do
+			if v[1]==newPos.x and v[2]==newPos.y then
+				boxPosList[k]={newPos2.x,newPos2.y}
+				break
+			end
+		end
+		return true
+	end
+	--左面可以移动
+	m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+	return true
+end
+function GameScene:operateRight()
+	local nowPos={x=m_levelData.mapPlayerLocation[1],y=m_levelData.mapPlayerLocation[2]}
+	local newPos={x=nowPos.x+1,y=nowPos.y}
+	--如果越界，返回false
+	if not m_mapData[newPos.y][newPos.x] then
+		return false
+	end
+	--如果是墙，返回false
+	if m_mapData[newPos.y][newPos.x]==1 then
+		return false
+	end
+	--如果是箱子
+	if m_mapData[newPos.y][newPos.x]==3 then
+		--则箱子之右一格
+		local newPos2={x=newPos.x+1,y=newPos.y}
+		--如果越界，返回false
+		if not m_mapData[newPos2.y][newPos2.x] then
+			return false
+		end
+		--如果是墙，返回false
+		if m_mapData[newPos2.y][newPos2.x]==1 then
+			return false
+		end
+		--如果是箱子，返回false
+		if m_mapData[newPos2.y][newPos2.x]==3 then
+			return false
+		end
+		--则玩家可以向右移动，箱子可以向右移动，在此更新关卡地图数据,刷新界面不在此处
+		m_levelData.mapPlayerLocation={newPos.x,newPos.y}
+		local boxPosList=m_levelData.mapBox
+		for k,v in ipairs(boxPosList) do
+			if v[1]==newPos.x and v[2]==newPos.y then
+				boxPosList[k]={newPos2.x,newPos2.y}
+				break
+			end
+		end
+		return true
+	end
+	--右面可以移动
+	m_levelData.mapPlayerLocation={newPos.x,newPos.y}
 	return true
 end
 function GameScene:backMenu(pSender)
