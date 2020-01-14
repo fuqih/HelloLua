@@ -35,7 +35,7 @@ local function main()
 	--设置帧率
 	director:setAnimationInterval(1.0/60)
 	
-	local miniGameInit = require("GameScene_a10_actions")
+	local miniGameInit = require("GameScene13")
 	local scene	= miniGameInit:create()
 --	local scene = require("GameScene_a10_actions")
 	local gameScene = scene:create()

@@ -42,7 +42,7 @@ function GameScene:createLayer()
 		cclog("tag = %d",tag)
 		actionFlag=menuItemSender:getTag()
 		--组合动作
-		local scene = require("GameScene9_sequenceActionScene")
+		local scene = require("GameScene09_sequenceActionScene")
 		local nextScene=scene:create()
 		ts=cc.TransitionJumpZoom:create(1,nextScene)
 		cc.Director:getInstance():pushScene(ts)

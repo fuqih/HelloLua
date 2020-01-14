@@ -46,7 +46,7 @@ function GameScene:createLayer()
         cclog("tag = %d", tag)
         actionFlag = menuItemSender:getTag()
 
-        local scene = require("GameScene_a10_easeActionScene")
+        local scene = require("GameScene10_easeActionScene")
         local nextScene = scene.create()
         local ts = cc.TransitionJumpZoom:create(1, nextScene)
         cc.Director:getInstance():pushScene(ts)

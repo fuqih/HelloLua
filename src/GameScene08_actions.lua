@@ -40,7 +40,7 @@ local function OnclickMenu(tag,menuItemSender)
 	cclog("tag = %d", tag)
 	actionFlag = menuItemSender:getTag()
 
-	local scene = require("GameScene8_IntervalActions")
+	local scene = require("GameScene08_IntervalActions")
 	local nextScene = scene.create()
 	local ts = cc.TransitionJumpZoom:create(1, nextScene)
 	cc.Director:getInstance():pushScene(ts)
