@@ -17,6 +17,7 @@ local size = cc.Director:getInstance():getWinSize()
 	详情可以看p104页
 	一般来说利用在生命周期这些时间做一些资源的创建和销毁事情
 --]]
+local MUSIC_FILE = "sound/arena.mp3"
 local GameScene = class("GameScene",function()
 	return cc.Scene:create()--猜测应该是继承了Scene类
 end)
@@ -58,6 +59,8 @@ end
 
 function GameScene:onEnterTransitionFinish()
     cclog("settingScene onEnterTransitionFinish")
+	--初始化场景播放背景音乐
+	AudioEngine.playMusic(MUSIC_FILE, true)
 end
 
 function GameScene:onExit()
@@ -97,8 +100,15 @@ function GameScene:createLayer()
     local musicToggleMenuItem = cc.MenuItemToggle:create(musicOnMenuItem, musicOffMenuItem)
     musicToggleMenuItem:setPosition(director:convertToGL(cc.p(900, 400)))
 	musicToggleMenuItem:setScale(0.8)
+	--背景音乐回调
     local function menuMusicToggleCallback(sender)
         cclog("Music Toggle.")
+		cclog(musicToggleMenuItem:getSelectedIndex())
+		if musicToggleMenuItem:getSelectedIndex() == 1 then --选中状态Off -> On
+			AudioEngine.pauseMusic()--暂停
+        else
+            AudioEngine.resumeMusic()--继续
+        end
     end
     musicToggleMenuItem:registerScriptTapHandler(menuMusicToggleCallback)
     
@@ -117,7 +127,7 @@ function GameScene:createLayer()
     local mn3 = cc.Menu:create(soundToggleMenuItem, musicToggleMenuItem,okMenuItem)
     mn3:setPosition(cc.p(0, 0))
     layer:addChild(mn3)
-	
+--	AudioEngine.playMusic("sound/Synth.mp3", true)
 	return layer
 end
 

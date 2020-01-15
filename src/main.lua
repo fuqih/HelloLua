@@ -1,5 +1,5 @@
 require "cocos.init"
-require "BaseFunctionLib"
+require "foundationTest.BaseFunctionLib"
 
 --cclog
 --[[
@@ -10,7 +10,7 @@ require "BaseFunctionLib"
 cclog = function(...)
 	print(string.format(...))
 end
---[[---print带特殊颜色的日志
+--[[print带特殊颜色的日志
 function logc(...)
 	cc.CGame:setPrintColor(0x000C)
 	cclog(...)
@@ -26,6 +26,7 @@ local function main()
 	
 	--加入搜索路径
 	cc.FileUtils:getInstance():addSearchPath("src")
+--	cc.FileUtils:getInstance():addSearchPath("src.foundationTest")
 	cc.FileUtils:getInstance():addSearchPath("res")
 	
 	local director = cc.Director:getInstance()
@@ -34,10 +35,13 @@ local function main()
 	director:setDisplayStats(true)
 	--设置帧率
 	director:setAnimationInterval(1.0/60)
-	
-	local miniGameInit = require("GameScene13")
-	local scene	= miniGameInit:create()
---	local scene = require("GameScene_a10_actions")
+	--预处理背景音乐
+	AudioEngine.preloadMusic("sound/arena.mp3")
+	AudioEngine.preloadEffect("sound/Blip.wav")
+--	local miniGameInit = require("miniGame.miniGameInit")
+--	local scene	= miniGameInit:create()
+	local scene = require("extendTest.GameScene03_ParticleSnow")
+--	local scene = require("foundationTest.GameScene06_settingScene")
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
 		cc.Director:getInstance():replaceScene(gameScene)

@@ -1,33 +1,29 @@
 local size = cc.Director:getInstance():getWinSize()
 --[[
-	åŠ¨ä½œç‰¹æ•ˆå’ŒåŠ¨ç”»
-	åŠ¨ä½œåˆ†ä¸ºä¸‰ç§ï¼Œ1å—æ—¶é—´é™åˆ¶çš„åŠ¨ä½œï¼Œ2è·ŸéšåŠ¨ä½œï¼Œ3å¯åœ¨è¿è¡Œæ—¶æ”¹å˜é€Ÿç‡çš„åŠ¨ä½œ
-	å—æ—¶é—´é™åˆ¶çš„åŠ¨ä½œåˆåˆ†ä¸ºç¬æ—¶åŠ¨ä½œå’Œé—´éš”åŠ¨ä½œ
+	¶¯×÷ÌØĞ§ºÍ¶¯»­
+	¶¯×÷·ÖÎªÈıÖÖ£¬1ÊÜÊ±¼äÏŞÖÆµÄ¶¯×÷£¬2¸úËæ¶¯×÷£¬3¿ÉÔÚÔËĞĞÊ±¸Ä±äËÙÂÊµÄ¶¯×÷
+	ÊÜÊ±¼äÏŞÖÆµÄ¶¯×÷ÓÖ·ÖÎªË²Ê±¶¯×÷ºÍ¼ä¸ô¶¯×÷
 --]]
 local GameScene = class("GameScene",function()
-	return cc.Scene:create()--çŒœæµ‹åº”è¯¥æ˜¯ç»§æ‰¿äº†Sceneç±»
+	return cc.Scene:create()--²Â²âÓ¦¸ÃÊÇ¼Ì³ĞÁËSceneÀà
 end)
--- å®šä¹‰å¸¸é‡
-kMoveTo             = 102
-kMoveBy             = 103
-kJumpTo             = 104
-kJumpBy             = 105
-kBezierBy           = 106
-kScaleTo            = 107
-kScaleBy            = 108
-kRotateTo           = 109
-kRotateBy           = 110
-kBlink              = 111
-kTintTo             = 112
-kTintBy             = 113
-kFadeTo             = 114
-kFadeIn             = 115
-kFadeOut            = 116
---æ“ä½œæ ‡è¯†
+-- ¶¨Òå³£Á¿
+kExplosion  = 1
+kFire       = 2
+kFireworks  = 3
+kFlower     = 4
+kGalaxy     = 5
+kMeteor     = 6
+kRain       = 7
+kSmoke      = 8
+kSnow       = 9
+kSpiral     = 10
+kSun        = 11
+--²Ù×÷±êÊ¶
 actionFlag = -1
 
 function GameScene:create()
-	--@ä¸çŸ¥é“è¿™ä¸ªæ˜¯ä»€ä¹ˆ
+	--@²»ÖªµÀÕâ¸öÊÇÊ²Ã´
 	local scene = GameScene.new()
 	scene:addChild(scene:createLayer())
 	return scene
@@ -35,18 +31,18 @@ end
 function GameScene:ctor()
 
 end
---èœå•é¡¹çš„ç‚¹å‡»äº‹ä»¶
+--²Ëµ¥ÏîµÄµã»÷ÊÂ¼ş
 local function OnclickMenu(tag,menuItemSender)
 	cclog("tag = %d", tag)
 	actionFlag = menuItemSender:getTag()
 
-	local scene = require("GameScene08_IntervalActions")
+	local scene = require("extendTest.GameScene02_Scenes")
 	local nextScene = scene.create()
 	local ts = cc.TransitionJumpZoom:create(1, nextScene)
 	cc.Director:getInstance():pushScene(ts)
 end
 
---ä¼ å…¥ä¸€ä¸ªtagå€¼å’Œéœ€è¦æ˜¾ç¤ºå‡ºçš„æ–‡å­—ï¼Œè¿”å›ä¸€ä¸ªèœå•é¡¹
+--´«ÈëÒ»¸ötagÖµºÍĞèÒªÏÔÊ¾³öµÄÎÄ×Ö£¬·µ»ØÒ»¸ö²Ëµ¥Ïî
 function GameScene:createMenuItem(menuItemTag,menuItemName)
 	local itemLabel=cc.Label:createWithBMFont("actions/fonts/fnt2.fnt",menuItemName)
 	local menuItem=cc.MenuItemLabel:create(itemLabel)
@@ -65,20 +61,17 @@ function GameScene:createLayer()
     bg:setPosition(cc.p(size.width/2, size.height/2))
     layer:addChild(bg)
 	
-	local menuItemsName={
-						{102,"kMoveTo"},{103,"kMoveBy"},{104,"kJumpTo"},
-						{105,"kJumpBy"},{106,"kBezierBy"},{107,"kScaleTo"},
-						{108,"kScaleBy"},{109,"kRotateTo"},{110,"kRotateBy"},
-						{111,"kBlink"},{112,"kTintTo"},{113,"kTintBy"},
-						{114,"kFadeTo"},{115,"kFadeIn"},{116,"kFadeOut"}}
-	local menuItems={}--èœå•é¡¹è¡¨
+	local menuItemsName={{1,"Explosion"}	,{2,"Fire"}		,{3,"Fireworks"},
+						{4,"Flower"}	,{5,"Galaxy"}	,{6,"Meteor"},
+						{7,"Rain"}		,{8,"Smoke"}	,{9,"Snow"},
+						{10,"Spiral"}	,{11,"Sun"}}
+	local menuItems={}--²Ëµ¥Ïî±í
 	for i=1,#menuItemsName do
 		local menuItem=self:createMenuItem(menuItemsName[i][1],menuItemsName[i][2])
 		table.insert(menuItems,menuItem)
 	end
-	--æœ‰ç‚¹æ“æ·¡ï¼Œä¸çŸ¥é“ä¸ºä»€ä¹ˆtableçš„pack,unpackä¸èƒ½ç”¨äº†
 	local mn = cc.Menu:create(unpack(menuItems))
-	mn:alignItemsInColumns(3,3,3,3,3)
+	mn:alignItemsInColumns(2, 2, 2, 2, 2, 1)
 	layer:addChild(mn)
 	
 	return layer
