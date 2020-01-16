@@ -40,7 +40,9 @@ local function main()
 	AudioEngine.preloadEffect("sound/Blip.wav")
 --	local miniGameInit = require("miniGame.miniGameInit")
 --	local scene	= miniGameInit:create()
-	local scene = require("extendTest.GameScene03_ParticleSnow")
+--	local scene = require("extendTest.GameScene03_ParticleSnow")
+	local scene = require("ninja.GameSceneNinja")
+
 --	local scene = require("foundationTest.GameScene06_settingScene")
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then

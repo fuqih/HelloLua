@@ -1,5 +1,7 @@
 local size = cc.Director:getInstance():getWinSize()
-
+--[[
+	plist文件制造粒子效果
+--]]
 local GameScene = class("GameScene",function()
 	return cc.Scene:create()--猜测应该是继承了Scene类
 end)
