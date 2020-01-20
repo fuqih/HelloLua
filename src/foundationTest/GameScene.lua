@@ -69,6 +69,7 @@ function GameScene:createLayer()
 	end
 	--[[
 		明明事件只放在这个图片上，但是为什么点击其他区域也会触发事件？？？
+		GUI控件可以自己添加事件，这样的话事件就只在自己身上
 	--]]
 	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
 	if sprite.touchListen then eventDispatcher:removeEventListener(sprite.touchListen) end
@@ -79,6 +80,7 @@ function GameScene:createLayer()
 	touchListen:registerScriptHandler(onMyTouchCancelled,cc.Handler.EVENT_TOUCH_CANCELLED)
 	sprite.touchListen = touchListen
 	eventDispatcher:addEventListenerWithSceneGraphPriority(touchListen, sprite)
+--	sprite:addTouchEventListener(onMyTouchBegan)--GUI控件才有这个函数
 	
 	local label=cc.Label:createWithSystemFont("hello world","arial",36)
 	label:setAnchorPoint(cc.p(0,0))

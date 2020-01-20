@@ -16,12 +16,12 @@
    eAHtlt1pw0AQhPWshgKGFKAm0oEhT4Y0kT7cpXcePpgce1JufWAb/LDMavZn5iTL9rosy/pEcQ4vHnhzTjl8i//t25uj1u6695q9QnZ5fg3ew2v0jyKa2Ry1U+gqXFs5dZ+Fm4k93ZkavuvHzuZ8L/+KfoXqlyZ6M+Kl04u9OWquSw6q58gLz9U9aA4enQx/o4/4sPwz8izwku2qcNL0QLP1pLOphr5Q56toMoOutMgzVN31dY0PfArxzv4jlJZ60DzqZ38Pj+bf9b+fF3/HuDcZpxq8kN4Z6Ht9d8t7bYbuM+141Fm/41nuBb9X/r3qefUebqHrv7XkmRf0+L7hGpRHaqN+5CPzIi7zAidNBbpCOHDUC/1b7FKgVUXtYGcVR7TxDVY133P3P7dXvIftfxt/t7J81hl7/yUq/KinisbezIh+dk+rnDyNaD+i9wZHb6jj
   </data>
  </layer>
- <layer id="2" name="collidable" width="32" height="32" opacity="0.55">
+ <layer id="2" name="collidable" width="32" height="32" opacity="0">
   <data encoding="base64" compression="zlib">
    eAHtU9EKAzEIu///lvvImxyBINaatnB7UNi0MSYi23X9V9y/dfiD7RizehRVnp/nOfQYO1FD1zL0uAaGnPXAmWXTsIh4byfuGR/Bs8BOZtZn35MerLXjoezqufzmfVZr1rPah++DA9zz+Q2Omlljp1Z9Pf9Lb78L3tWdjG9RnQNvlF+1/u4L9AUqFxj9j6p4xSPiVPVVXuSVYaq+ws98s57iMeNmPpXeTD/rV/Sb0xfABbLfUtTD3G6OtFcxdZdVn9Gc4j/SWMUV7y+4Dyz53Q0=
   </data>
  </layer>
- <objectgroup id="3" name="objects">
+ <objectgroup id="3" name="objects" opacity="0.43">
   <object id="1" name="ninja" x="104" y="965" width="16" height="20.6667"/>
  </objectgroup>
 </map>

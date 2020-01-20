@@ -1,8 +1,12 @@
 local size = cc.Director:getInstance():getWinSize()
 local m_layer
+--[[
+	物理引擎模仿物理现象而成，，需要首先创建一个物理场景，然后划定边界，精灵本身需要和形状绑定在一起，
+	物体之间也能产生事件，事件产生需要在layer里监听
+--]]
 local GameScene = class("GameScene",function()
 	local scene = cc.Scene:createWithPhysics()--猜测应该是继承了Scene类,创建一个物理场景
---	scene:getPhysicsWorld():setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)--设置调试遮罩，可以将物体的形状绘制出来（物体没有和精灵绑定则不会显示）
+	scene:getPhysicsWorld():setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)--设置调试遮罩，可以将物体的形状绘制出来（物体没有和精灵绑定则不会显示）
 	return scene
 end)
 function GameScene:create()
@@ -15,7 +19,7 @@ function GameScene:ctor()
 	
 end
 --测试接触检测掩码1和2的物体为什么也发生了碰撞，难以理解
-
+--[[
 function GameScene:addNewSpriteAtPosition(pos)
 	local sp=cc.Sprite:create("physicsWorld/Ball.png")
 	local size=sp:getContentSize()
@@ -30,6 +34,26 @@ function GameScene:addNewSpriteAtPosition(pos)
     sp:setPhysicsBody(body)
     sp:setPosition(pos)
     self:addChild(sp)	--加入到场景里和加入到Layer里为什么显示效果不一样，为什么在Layer里定义边界，可以在场景里添加物体
+end
+--]]
+function GameScene:addNewSpriteAtPosition(pos)
+	local boxA=cc.Sprite:create("physicsWorld/BoxA2.png")
+	boxA:setPosition(pos)
+    local bodyBoxA = cc.PhysicsBody:createBox(boxA:getContentSize())
+    boxA:setPhysicsBody(bodyBoxA)
+	self:addChild(boxA,10,100)
+	
+	local boxB=cc.Sprite:create("physicsWorld/BoxB2.png")
+	boxB:setPosition(pos.x+100,pos.y-120)
+    local bodyBoxB = cc.PhysicsBody:createBox(boxB:getContentSize())
+    boxB:setPhysicsBody(bodyBoxB)
+	self:addChild(boxB,20,101)
+	
+	local world = cc.Director:getInstance():getRunningScene():getPhysicsWorld()
+	
+	local joint = cc.PhysicsJointDistance:construct(bodyBoxA,bodyBoxB,cc.p(0,0),cc.p(0,boxB:getContentSize().width / 2))
+	world:addJoint(joint)
+	
 end
 function GameScene:addNewSpriteAtPosition2(pos)
 	local sp=cc.Sprite:create("physicsWorld/Ball.png")
