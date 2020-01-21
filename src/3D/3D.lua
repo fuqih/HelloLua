@@ -45,6 +45,20 @@ function GameScene:createLayer()
 		sprite3D:setRotation3D(rotation3D)
 	end
 --	layer:scheduleUpdateWithPriorityLua(update,0)
+
+	-- 创建Camera对象
+	local camera = cc.Camera:createPerspective(60, size.width / size.height, 1, 1000)
+	-- 设置相机位置
+	local spritePos = sprite3D:getPosition3D()
+	spritePos.y = spritePos.y + 200
+	spritePos.z = spritePos.z + 600
+	camera:setPosition3D(spritePos)
+	-- 设置相机朝向和竖直方向向量
+	camera:lookAt(spritePos)
+	-- 设置相机CameraFlag属性
+	camera:setCameraFlag(cc.CameraFlag.USER1)
+	layer:addChild(camera)
+	
 	local originRotation3D
 	local originPos={x=0,y=0}
 	local function touchBeginCallback(touch,event)
@@ -57,7 +71,11 @@ function GameScene:createLayer()
 		local nowPos=touch:getLocation()
 		local scale=0.5
 		local offset = {x=(nowPos.x-originPos.x)*scale,y=(nowPos.y-originPos.y)*scale}
-		local rotation3={y=originRotation3D.y+offset.x,x=originRotation3D.x+offset.y,z=originRotation3D.z}
+		local rotation3={
+							y=math.fmod(originRotation3D.y+offset.x,360),
+							x=math.fmod(originRotation3D.x+offset.y,360),
+							z=math.fmod(originRotation3D.z,360)
+						}
 		sprite3D:setRotation3D(rotation3)
 	end
 	local function touchEndCallback(touch,event)

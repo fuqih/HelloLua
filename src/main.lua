@@ -45,7 +45,9 @@ local function main()
 --	local scene = require("physicsWorld.GameScene02PhyContact")
 --	local scene = require("foundationTest.GameScene")
 --	local scene=require("GUI.GUI")
-	local scene=require("3D.3D")
+--	local scene=require("3D.3Dcamera")
+	local scene=require("dataOperate.GameScene01")
+	
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
 		cc.Director:getInstance():replaceScene(gameScene)
