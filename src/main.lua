@@ -16,19 +16,23 @@ function logc(...)
 	cclog(...)
 	cc.CGame:setPrintColor(0x000F)
 end--]]
-
+local fileUtils=cc.FileUtils:getInstance()
 
 local function main()
 	--垃圾回收函数
 	collectgarbage("collect")--做一个完整的垃圾回收循环
 	collectgarbage("setpause",100)--设置间歇率，返回间歇率的前一个值
 	collectgarbage("setstepmul",5000)--返回步进倍率的前一个值
+	--看下当前的搜索路径
+	local searchPaths = fileUtils:getSearchPaths()
+	local writablePath = fileUtils:getWritablePath()
 	
-	--加入搜索路径
-	cc.FileUtils:getInstance():addSearchPath("src")
+--	fileUtils:setSearchPaths({"src"})	--这个是重设搜索路径
+
+	--加入搜索路径(经测试下这src,res两个路径默认加上了，现在其实重复了)
+--	cc.FileUtils:getInstance():addSearchPath("src")
 --	cc.FileUtils:getInstance():addSearchPath("src.foundationTest")
-	cc.FileUtils:getInstance():addSearchPath("res")
-	
+--	cc.FileUtils:getInstance():addSearchPath("res")
 	local director = cc.Director:getInstance()
 --	director:getOpenGLView():setDesignResolutionSize(1280,720,0)--设置设计屏幕尺寸
 --	cc.Director:getInstance():getOpenGLView():setFrameZoomFactor(0.7)--设置缩放
@@ -46,7 +50,7 @@ local function main()
 --	local scene = require("foundationTest.GameScene")
 --	local scene=require("GUI.GUI")
 --	local scene=require("3D.3Dcamera")
-	local scene=require("dataOperate.GameScene01")
+	local scene=require("dataOperate.GameScene02")
 	
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then
