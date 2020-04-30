@@ -47,10 +47,10 @@ local function main()
 --	local scene = require("extendTest.GameScene03_ParticleSnow")
 --	local scene = require("ninja.GameSceneNinja")
 --	local scene = require("physicsWorld.GameScene02PhyContact")
---	local scene = require("foundationTest.GameScene")
+	local scene = require("mytestInMind.testActionScene")
 --	local scene=require("GUI.GUI")
 --	local scene=require("3D.3Dcamera")
-	local scene=require("dataOperate.GameScene02")
+--	local scene=require("dataOperate.GameScene02")
 	
 	local gameScene = scene:create()
 	if cc.Director:getInstance():getRunningScene() then

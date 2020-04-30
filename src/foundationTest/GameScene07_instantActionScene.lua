@@ -58,7 +58,9 @@ function MyActionScene:createLayer()
         if actionFlag == PLACE_TAG then
             sprite:runAction(cc.Place:create(p))
         elseif actionFlag == FLIPX_TAG then
-            sprite:runAction(cc.FlipX:create(true))
+			local orbitCamera=cc.OrbitCamera:create(1, 1, 0, 0, 180, 0, 0)
+--            sprite:runAction(cc.FlipX:create(true))
+			sprite:runAction(orbitCamera)
         elseif actionFlag == FLIPY_TAG then
             sprite:runAction(cc.FlipY:create(true))
         elseif actionFlag == HIDE_SHOW_TAG then

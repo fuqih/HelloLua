@@ -16,3 +16,11 @@ function DeepCopy(object)
     end
     return _copy(object)
 end
+--这个函数用来不重复加载模块
+function requireEx(fileName)
+	if package.loaded[fileName] then
+		cclog(fileName..">>>文件重新加载")
+		package.loaded[fileName]=nil
+	end
+	return require(fileName)
+end
