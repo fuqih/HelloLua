@@ -10,7 +10,7 @@ local function popAction(n)
 	if n and n>#actSeq then
 		actSeq={}
 	elseif n and n<=#actSeq then
-		for i=#actSeq
+--		for i=#actSeq
 	elseif #actSeq>1 then
 		actSeq[#actSeq]=nil
 	end
@@ -22,7 +22,30 @@ function Layer:onCreate(param)
 	bg:setAnchorPoint(0.5,0.5)
 	bg:setContentSize(size.width,size.height)
     bg:setPosition(cc.p(size.width/2, size.height/2))
-    self:addChild(bg)
+	
+	
+	local label1=cc.Label:createWithSystemFont("first","Arial",24)
+	label1:setPosition(cc.p(300,300))
+	local ac1=cc.MoveBy:create(2,cc.p(200,0))
+--	local ac2=cc.MoveBy:create(2,cc.p(0,200))
+	local ac3=cc.MoveBy:create(2,cc.p(-200,0))
+--	local ac4=cc.MoveBy:create(2,cc.p(0,-200))
+	local seq=cc.Sequence:create(ac1,ac2,ac3,ac4)
+	local rept=cc.RepeatForever:create(seq)
+	label1:runAction(rept)
+	
+	local label2=cc.Label:createWithSystemFont("follow1","Arial",24)
+	local flw=cc.Follow:create(label1)
+	label2:runAction(flw)
+	
+	local label3=cc.Label:createWithSystemFont("follow2","Arial",24)
+	local flw2=cc.Follow:create(label1)
+	label3:runAction(flw2)
+	
+	self:addChild(bg)
+	self:addChild(label2)
+    label2:addChild(label1)
+--	label2:addChild(label3)
 	self:initActionWidgt()
 	
 end

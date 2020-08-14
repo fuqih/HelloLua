@@ -17,7 +17,14 @@ function logc(...)
 	cc.CGame:setPrintColor(0x000F)
 end--]]
 local fileUtils=cc.FileUtils:getInstance()
-
+local function showResolution()
+	local director=cc.Director:getInstance()
+	local design=director:getOpenGLView()
+	local frameSize=director:getOpenGLView():getFrameSize()
+	local winSize=director:getWinSize()
+	local visibleSize=director:getVisibleSize()
+	local visibleorigin=director:getVisibleOrigin()
+end
 local function main()
 	--垃圾回收函数
 	collectgarbage("collect")--做一个完整的垃圾回收循环
@@ -47,7 +54,7 @@ local function main()
 --	local scene = require("extendTest.GameScene03_ParticleSnow")
 --	local scene = require("ninja.GameSceneNinja")
 --	local scene = require("physicsWorld.GameScene02PhyContact")
-	local scene = require("mytestInMind.testActionScene")
+	local scene = require("foundationTest.GameScene15")
 --	local scene=require("GUI.GUI")
 --	local scene=require("3D.3Dcamera")
 --	local scene=require("dataOperate.GameScene02")
@@ -58,6 +65,7 @@ local function main()
 	else
 		cc.Director:getInstance():runWithScene(gameScene)
 	end
+	showResolution()
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)
